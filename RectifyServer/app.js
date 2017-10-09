@@ -6,7 +6,10 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
-var users = require('./routes/users');
+var login = require('./routes/login');
+var register = require('./routes/register');
+var mongo_client = require('./bin/mongoClient');
+var cons = require('./bin/constants');
 
 var app = express();
 
@@ -24,7 +27,27 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'views')));
 
 app.use('/', index);
-app.use('/users', users);
+app.use('/login', login);
+app.use('/register', register);
+
+
+// connect to the mongo.
+var dbUrl = null;
+/*if (process.env.test) {
+    dbUrl = cons.getDBUrl(cons.dbTest);
+} else {
+    dbUrl = cons.getDBUrl(cons.dbProd);
+}*/
+dbUrl = cons.getDBUrl(cons.dbTest);
+
+mongo_client.connect(dbUrl, function (err) {
+    if (err) {
+        console.log("Error while connecting to the database ", err);
+        process.exit(1);
+    } else {
+        console.log("Connected to database on port: ", cons.port);
+    }
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

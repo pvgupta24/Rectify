@@ -1,0 +1,36 @@
+//
+   Created by mohit on 9/10/17.
+extends layout
+block body
+    <div class="container">
+    <div class="row" >
+    <form class="col s12" action="/login/submit" method="post">
+    <div class="col s12">
+    <div class="col s4"></div>
+    <h3 class="col s4"> Login </h3>
+    <div class="col s4"></div>
+    </div>
+
+    <div class="row">
+    <div class="input-field col s6">
+    <input name="email" id="email" type="email" class="validate" required>
+    <label for="email">Email</label>
+    </div>
+    </div>
+
+    <div class="row">
+    <div class="input-field col s6">
+    <input name="password" id="password" type="password" class="validate" required>
+    <label for="password">Password</label>
+    </div>
+    </div>
+
+    <div class="col s12">
+    <div class="col s4"></div>
+    <button class="btn waves-effect waves-light btn col s4" type="submit">Login</button>
+    <div class="col s4"></div>
+    </div>
+    </form>
+
+    </div>
+    </div>
