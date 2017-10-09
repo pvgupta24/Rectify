@@ -1,2 +1,0 @@
-# Rectify
-Contest server.
