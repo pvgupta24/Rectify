@@ -1,24 +1,49 @@
 var express = require('express');
 var router = express.Router();
 var mongo_helper = require('../bin/mongoHelper');
+const url = require('url');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    res.render('login');
+    if (req.session.user) {
+        res.redirect(url.format({
+            pathname: "/dashboard"
+        }));
+    } else {
+        res.render('login', {message: req.query.err_message});
+    }
+
 });
 
 /* Submit Login.*/
-router.post('/submit', function (req, res, next) {
+router.post('/', function (req, res, next) {
     var email = req.body.email;
     var password = req.body.password;
     mongo_helper.FindUser(email, function (err, dbResult) {
         if (err) {
-            res.status(500).json("Error while logging in user. Error: ", err);
+            req.session.user = null;
+            res.redirect(url.format({
+                pathname:"/login",
+                query: {
+                    "err_message": err
+                }
+            }));
         } else {
             if (dbResult.length > 0 && dbResult[0].password == password) {
-                res.status(200).json("User login successful");
+                var user = {};
+                user.email = email;
+                user.first_name = dbResult[0].first_name;
+                user.last_name = dbResult[0].last_name;
+                req.session.user = user;
+                res.redirect('/dashboard')
             } else {
-                res.status(304).json("User not registered or password not write.");
+                req.session.user = null;
+                res.redirect(url.format({
+                    pathname:"/login",
+                    query: {
+                        "err_message": "Wrong Password."
+                    }
+                }));
             }
         }
     });

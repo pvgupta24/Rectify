@@ -7,8 +7,8 @@ router.get('/', function(req, res, next) {
     res.render('register');
 });
 
-/* Submit Login. */
-router.post('/submit', function (req, res, next) {
+/* Submit Register. */
+router.post('/', function (req, res, next) {
     var first_name = req.body.first_name;
     var last_name = req.body.last_name;
     var email = req.body.email;

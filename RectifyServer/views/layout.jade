@@ -18,6 +18,17 @@ block title
 <link href="stylesheets/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 
+<nav class="light-blue lighten-1" role="navigation">
+<div class="nav-wrapper container">
+<a id="logo-container" href="http://engineernitk.org/" class="brand-logo">Engineer 2017</a>
+<ul class="right hide-on-med-and-down">
+<li><a href="http://engineernitk.org/events.html#/comps_inscription">Computer Science Events</a></li>
+<li><a href="/">Home</a></li>
+if (typeof(is_logged_in) !== undefined && is_logged_in != null)
+    <li><a href="/logout">Logout</a></li>
+</ul>
+</div>
+</nav>
 block body
     body
 
