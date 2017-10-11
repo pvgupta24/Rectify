@@ -19,4 +19,18 @@ mongo_helper.FindUser = function (email, callback) {
     var collection = mongo_client.get().collection(cons.UsersColl);
     mongo_client.findInDB(collection, userObj, 0, 100, callback);
 };
+
+mongo_helper.GetProblems = function (callback) {
+    var problemObj = {};
+    var collection = mongo_client.get().collection(cons.ProblemsColl);
+    mongo_client.findInDB(collection, problemObj, 0, 3, callback);
+};
+
+mongo_helper.GetProblemById = function (problem_id, callback) {
+    var problemObj = {};
+    problemObj.problem_id = problem_id;
+    var collection = mongo_client.get().collection(cons.ProblemsColl);
+    mongo_client.findInDB(collection, problemObj, 0, 1, callback);
+};
+
 module.exports = mongo_helper;

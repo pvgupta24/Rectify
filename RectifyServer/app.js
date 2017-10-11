@@ -13,6 +13,7 @@ var mongo_client = require('./bin/mongoClient');
 var cons = require('./bin/constants');
 var dashboard = require('./routes/dashboard');
 var logout = require('./routes/logout');
+var challenges = require('./routes/challenges');
 
 var app = express();
 
@@ -39,6 +40,7 @@ app.use('/login', login);
 app.use('/register', register);
 app.use('/dashboard', dashboard);
 app.use('/logout', logout);
+app.use('/challenge', challenges);
 
 
 // connect to the mongo.

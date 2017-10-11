@@ -1,0 +1,54 @@
+//
+   Created by mohit on 10/10/17.
+extends layout
+
+block body
+    body
+        if (typeof(meta_data) !== undefined && meta_data != null)
+            if (typeof (meta_data.problems_info.error) !== undefined && meta_data.problems_info.error != null)
+                if (meta_data.problems_info.error !== true)
+                    <div class="container">
+                    h2.header.center.orange-text #{meta_data.problems_info.problems[0].problem_name}
+                    <div class="row">
+                    <h5 class="header col s12 light"> Problem Statement: </h5>
+                    p.header.col.s12.light #{meta_data.problems_info.problems[0].problem_statement}
+
+                    <h5 class="header col s12 light"> Problem Constraints </h5>
+                    p.header.col.s12.light #{meta_data.problems_info.problems[0].problem_constraints}
+
+                    <h5 class="col s12 light"> Time Constraints </h5>
+                    p.col.s12.light #{meta_data.problems_info.problems[0].time_constraint}
+
+
+                    <h5 class="col s12 light"> Memory Constraints </h5>
+                    p.col.s12.light #{meta_data.problems_info.problems[0].memory_constraint}
+                    </div>
+
+                    style(type='text/css').
+                        pre {
+                            height: 400px;
+                            width: 100%;
+                        }
+
+                    <form action="" method="POST" id="problem_submit_form">
+                    <h5 class="col s12 light"> Type your Code Here : </h5>
+                    pre#editor // Write your C++ code here.
+
+                    <input type="hidden" name="code" id="code" value="Invalid Code !!"/>
+                    <div class="s12 m12 l12 center">
+                    <button id="code_submit" class="btn waves-effect waves-purple blue lighten-5 blue-text btn-large hoverable center">Submit Code <i class="material-icons right">send</i></button>
+                    </div>
+                    </form>
+                    <script src="javascripts/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+                    <script src="javascripts/ace-editor.js" type="text/javascript" charset="utf-8"></script>
+
+                    </div>
+                    <br>
+                    <br>
+
+                else
+                    <h3>Problem info error.</h3>
+            else
+                <h3>Problem Info undefined.</h3>
+        else
+            <h3>Meta data undefined.</h3>
