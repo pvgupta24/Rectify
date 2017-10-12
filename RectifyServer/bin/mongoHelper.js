@@ -33,4 +33,11 @@ mongo_helper.GetProblemById = function (problem_id, callback) {
     mongo_client.findInDB(collection, problemObj, 0, 1, callback);
 };
 
+mongo_helper.GetTestcases = function (problem_id, callback) {
+    var problemObj = {};
+    problemObj.problem_id = problem_id;
+    var collection = mongo_client.get().collection(cons.TestcasesColl);
+    mongo_client.findInDB(collection, problemObj, 0, 100, callback);
+};
+
 module.exports = mongo_helper;
