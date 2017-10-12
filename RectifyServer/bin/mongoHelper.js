@@ -32,6 +32,7 @@ mongo_helper.GetProblems = function (callback) {
 
 mongo_helper.GetProblemById = function (problem_id, callback) {
     var problemObj = {};
+    problemObj._id = problem_id;
     problemObj.problem_id = problem_id;
     var collection = mongo_client.get().collection(cons.ProblemsColl);
     mongo_client.findInDB(collection, problemObj, 0, 1, callback);
@@ -89,6 +90,36 @@ mongo_helper.GetLeaderboard = function (callback) {
     // Add time.
     var sortObj = {score: -1};
     mongo_client.getLeaders(collection, {}, sortObj, 0, 100, callback);
+};
+
+mongo_helper.GetAllSubmissions = function (callback) {
+    var collection = mongo_client.get().collection(cons.SubmissionsColl);
+    var Obj = {};
+    mongo_client.findInDB(collection, Obj, 0, 500, callback);
+};
+
+mongo_helper.GetSubmissionOfUser = function (user_id, problem_id, callback) {
+    var collection = mongo_client.get().collection(cons.SubmissionsColl);
+    var obj = {};
+    obj.user_id = user_id;
+    obj.problem_id = problem_id;
+    mongo_client.findInDB(collection, obj, 0, 3, callback);
+};
+
+mongo_helper.AddHacks = function (user_id, problem_id, opponent_id, callback) {
+    var collection = mongo_client.get().collection(cons.HacksColl);
+    var obj = {};
+    obj.user_id = user_id;
+    obj.problem_id = problem_id;
+    obj.opponent_id = opponent_id;
+    mongo_client.insertToDB(collection, obj, callback);
+};
+
+mongo_helper.GetHacksByUser = function (user_id, callback) {
+    var collection = mongo_client.get().collection(cons.HacksColl);
+    var obj = {};
+    obj.user_id = user_id;
+    mongo_client.findInDB(collection, obj, 0, 100, callback);
 };
 
 module.exports = mongo_helper;

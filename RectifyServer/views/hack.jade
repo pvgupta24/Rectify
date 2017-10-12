@@ -1,0 +1,38 @@
+//
+   Created by mohit on 13/10/17.
+extends layout
+
+block body
+    body
+        if (typeof(meta_data) !== undefined && meta_data != null)
+            if (typeof (meta_data.hacks) !== undefined && meta_data.hacks != null)
+                <table class="striped" style="width: 70%; align: center" align="center">
+                <thead>
+                <tr>
+                <th>UserId</th>
+                <th>Problem Name</th>
+                <th>Hack</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                each submission, i in meta_data.hacks
+                    - var link = "/hack_solution?problem_id=" + submission.problem_id + "&user_id=" + submission.user_id
+                    - var problem_name = submission.problem_name
+                    <tr>
+                    td #{submission.user_id}
+                    td #{problem_name}
+
+                    if submission.hacked !== undefined && submission.hacked != null && submission.hacked === false
+                        <td>
+                        a(href = link) Hack IT!
+                        </td>
+                    else
+                        td Hacked!
+                    </tr>
+                </tbody>
+                </table>
+            else
+                <h2> Error. Hacks is undefined. </h2>
+        else
+            <h2> Error. Meta data is undefined. </h2>

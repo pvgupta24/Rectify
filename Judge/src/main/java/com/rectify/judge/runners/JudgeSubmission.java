@@ -54,7 +54,7 @@ public class JudgeSubmission implements Callable {
                 @Override
                 public void run() {
                     try {
-                        ProcessBuilder processBuilder = new ProcessBuilder("g++", parentDirSubmissions + fileNameExt, "-o", parentDirSubmissions + fileName);
+                        ProcessBuilder processBuilder = new ProcessBuilder("g++", "-w", parentDirSubmissions + fileNameExt, "-o", parentDirSubmissions + fileName);
                         Process process = processBuilder.start();
                         BufferedReader errorReader = new BufferedReader(new InputStreamReader(process.getErrorStream()));
                         String line, errorOut = null;

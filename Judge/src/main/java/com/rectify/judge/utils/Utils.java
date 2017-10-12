@@ -5,4 +5,5 @@ package com.rectify.judge.utils;
  */
 public class Utils {
     public static String parentDirSubmissions = "/home/mohit/Rectify/Submissions/";
+    public static String parentDirHacks = "/home/mohit/Rectify/Hacks/";
 }

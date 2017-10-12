@@ -11,6 +11,7 @@ cons.UsersColl = "Users";
 cons.ProblemsColl = "Problems";
 cons.SubmissionsColl = "Submissions";
 cons.TestcasesColl = "Testcases";
+cons.HacksColl = "Hacks";
 
 // Authentication.
 cons.auth = "mohitreddy1996:mohitreddy1996";

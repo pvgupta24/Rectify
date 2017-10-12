@@ -16,6 +16,8 @@ var logout = require('./routes/logout');
 var challenges = require('./routes/challenges');
 var status = require('./routes/status');
 var leaderboard = require('./routes/leaderboard');
+var hack = require('./routes/hack');
+var hack_solution = require('./routes/hack_solution');
 
 var app = express();
 
@@ -45,6 +47,8 @@ app.use('/logout', logout);
 app.use('/challenge', challenges);
 app.use('/status', status);
 app.use('/leaderboard', leaderboard);
+app.use('/hack', hack);
+app.use('/hack_solution', hack_solution);
 
 
 // connect to the mongo.
