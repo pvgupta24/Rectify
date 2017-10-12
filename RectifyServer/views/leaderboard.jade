@@ -1,0 +1,30 @@
+//
+   Created by mohit on 13/10/17.
+extends layout
+
+block body
+    body
+        if (typeof(meta_data) !== undefined && meta_data != null)
+            if (typeof (meta_data.leaderboard) !== undefined && meta_data.leaderboard != null)
+                <table class="striped" style="width: 70%; align: center" align="center">
+                <thead>
+                <tr>
+                <th>Rank</th>
+                <th>UserId</th>
+                <th>Score</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                each contestant, i in meta_data.leaderboard
+                    <tr>
+                    td #{contestant.rank}
+                    td #{contestant.userId}
+                    td #{contestant.score}
+                    </tr>
+                </tbody>
+                </table>
+            else
+                <h2> Error. Problems is undefined. </h2>
+        else
+            <h2> Error. Meta data is undefined. </h2>

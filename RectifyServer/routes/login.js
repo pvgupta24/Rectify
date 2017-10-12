@@ -20,9 +20,9 @@ router.get('/', function(req, res, next) {
 
 /* Submit Login.*/
 router.post('/', function (req, res, next) {
-    var email = req.body.email;
+    var user_id = req.body.user_id;
     var password = req.body.password;
-    mongo_helper.FindUser(email, function (err, dbResult) {
+    mongo_helper.FindUser(user_id, function (err, dbResult) {
         if (err) {
             req.session.user = null;
             res.redirect(url.format({
@@ -32,9 +32,9 @@ router.post('/', function (req, res, next) {
                 }
             }));
         } else {
-            if (dbResult.length > 0 && dbResult[0].password == password) {
+            if (dbResult.length == 1 && dbResult[0].password == password) {
                 var user = {};
-                user.email = email;
+                user.user_id = user_id;
                 user.first_name = dbResult[0].first_name;
                 user.last_name = dbResult[0].last_name;
                 req.session.user = user;

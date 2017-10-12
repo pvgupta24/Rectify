@@ -13,8 +13,8 @@ block body
 
     <div class="row">
     <div class="input-field col s6">
-    <input name="email" id="email" type="email" class="validate" required>
-    <label for="email">Email</label>
+    <input name="user_id" id="user_id" type="text" class="validate" required>
+    <label for="user_id">UserId</label>
     </div>
     </div>
 
@@ -31,6 +31,7 @@ block body
     <div class="col s4"></div>
     </div>
     </form>
-    h3 #{message}
+    if (meta_data.err_message !== undefined && meta_data.err_message != null)
+        h3 #{meta_data.err_message}
     </div>
     </div>

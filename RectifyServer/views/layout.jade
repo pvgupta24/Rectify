@@ -27,7 +27,7 @@ block title
 </ul>
 <ul class="right hide-on-med-and-down">
 <li><a href="/">Home</a></li>
-if (typeof(meta_data.is_logged_in) !== undefined && meta_data.is_logged_in != null)
+if (typeof(meta_data.is_logged_in) !== undefined && meta_data.is_logged_in != null && meta_data.is_logged_in !== false)
     <li><a href="/dashboard">Challenges</a></li>
     <li><a href="/leaderboard">Leaderboard</a></li>
     <li><a href="/logout">Logout</a></li>

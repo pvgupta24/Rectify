@@ -14,6 +14,8 @@ var cons = require('./bin/constants');
 var dashboard = require('./routes/dashboard');
 var logout = require('./routes/logout');
 var challenges = require('./routes/challenges');
+var status = require('./routes/status');
+var leaderboard = require('./routes/leaderboard');
 
 var app = express();
 
@@ -41,6 +43,8 @@ app.use('/register', register);
 app.use('/dashboard', dashboard);
 app.use('/logout', logout);
 app.use('/challenge', challenges);
+app.use('/status', status);
+app.use('/leaderboard', leaderboard);
 
 
 // connect to the mongo.

@@ -15,6 +15,8 @@ cons.TestcasesColl = "Testcases";
 // Authentication.
 cons.auth = "mohitreddy1996:mohitreddy1996";
 
+cons.StartTimeStamp = new Date()
+
 cons.getDBUrl = function (dbName) {
     if (dbName == cons.dbProd) {
         return "mongodb://" + cons.auth + "@" + cons.host + ":" + cons.port + "/" + dbName;
@@ -25,5 +27,7 @@ cons.getDBUrl = function (dbName) {
         process.exit(1);
     }
 };
+
+cons.Score = 100;
 
 module.exports = cons;

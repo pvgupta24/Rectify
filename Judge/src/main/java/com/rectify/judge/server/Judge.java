@@ -35,7 +35,7 @@ public class Judge implements Serializable{
             if (userSubmission.problemId == null) {
                 throw new Exception("ProblemId not provided to the service.");
             }
-            if (userSubmission.email == null) {
+            if (userSubmission.userId == null) {
                 throw new Exception("EmailId of the user not provided to the service.");
             }
             if (userSubmission.code == null) {

@@ -6,33 +6,39 @@ block title
 block body
     body
         if (typeof(meta_data) !== undefined && meta_data != null)
-            if (typeof (meta_data.problems_info.error) !== undefined && meta_data.problems_info.error != null)
-                if (meta_data.problems_info.error !== true)
-                    <table class="striped" style="width: 70%; align: center" align="center">
-                    <thead>
-                    <tr>
-                    <th>Challenge Name</th>
-                    <th>Maximum Score</th>
-                    <th>Solved</th>
-                    </tr>
-                    </thead>
+            if (typeof (meta_data.problems) !== undefined && meta_data.problems != null)
+                <table class="striped" style="width: 70%; align: center" align="center">
+                <thead>
+                <tr>
+                <th>Challenge Name</th>
+                <th>Maximum Score</th>
+                <th>Solved</th>
+                </tr>
+                </thead>
 
-                    <tbody>
-                    each problem, i in meta_data.problems_info.problems
-                        <tr>
-                        - var link = "/challenge?problem_id=" + problem.problem_id
+                <tbody>
+                each problem, i in meta_data.problems
+                    <tr>
+                    if (problem.solved !== undefined && problem.solved != null && problem.solved === true)
+                        - var link = "/challenge?problem_id=" + problem.problem_id + "&solved=yes"
                         - var problem_name = problem.problem_name
                         <td>
                         a(href = link) #{problem_name}
                         </td>
                         <td> 100 </td>
-                        <td> No </td>
-                        </tr>
-                    </tbody>
-                    </table>
-                else
-                    <h2> Error. No problem info found. </h2>
+                        td Yes
+                    else
+                        - var link = "/challenge?problem_id=" + problem.problem_id + "&solved=no"
+                        - var problem_name = problem.problem_name
+                        <td>
+                        a(href = link) #{problem_name}
+                        </td>
+                        <td> 100 </td>
+                        td No
+                    </tr>
+                </tbody>
+                </table>
             else
-                <h2> Error. Problem info error is undefined. </h2>
+                <h2> Error. Problems is undefined. </h2>
         else
             <h2> Error. Meta data is undefined. </h2>

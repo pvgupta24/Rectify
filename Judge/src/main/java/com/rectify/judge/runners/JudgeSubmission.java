@@ -26,12 +26,12 @@ public class JudgeSubmission implements Callable {
     @Override
     public SubmissionResults call() throws Exception {
         final SubmissionResults submissionResults = new SubmissionResults();
-        String email = submissionDetails.email;
+        String userId = submissionDetails.userId;
         String problemId = submissionDetails.problemId;
         final String code = submissionDetails.code;
 
         // Write code into a location.
-        final String fileName = email + "_" + problemId;
+        final String fileName = userId + "_" + problemId;
         final String fileNameExt = fileName + ".cc";
         BufferedWriter outputWriter = null;
         try {

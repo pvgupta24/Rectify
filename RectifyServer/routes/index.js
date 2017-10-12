@@ -9,7 +9,8 @@ router.get('/', function(req, res, next) {
         meta_info.is_logged_in = true;
         res.render('index', {meta_data: meta_info});
     } else {
-      res.render('index', {meta_data: meta_info});
+        meta_info.is_logged_in = false;
+        res.render('index', {meta_data: meta_info});
     }
 });
 

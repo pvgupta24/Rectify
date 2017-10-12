@@ -35,8 +35,16 @@ mongo_client.insertToDB = function (collection, userObj, callback) {
     collection.insert(userObj, callback);
 };
 
+mongo_client.updateToDB = function (collection, query, submissionObj, callback) {
+    collection.update(query, submissionObj, {upsert : true, w:1}, callback);
+};
+
 mongo_client.findInDB = function (collection, userObj, start, count, callback) {
     collection.find(userObj, {skip: start}).limit(count).toArray(callback);  
+};
+
+mongo_client.getLeaders = function (collection, queryObj, sortObj, start, count, callback) {
+    collection.find(queryObj, {skip: start}).sort(sortObj).limit(count).toArray(callback);
 };
 
 module.exports = mongo_client;
