@@ -20,6 +20,7 @@ router.get('/', function(req, res, next) {
                     contestantObj.rank = rank;
                     contestantObj.userId = element.user_id;
                     contestantObj.score = element.score;
+                    contestantObj.time = element.time
                     rank += 1;
                     meta_info.leaderboard.push(contestantObj);
                 });

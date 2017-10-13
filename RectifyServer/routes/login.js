@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var cons = require('../bin/constants');
 var mongo_helper = require('../bin/mongoHelper');
 const url = require('url');
 var meta_info = require('../bin/meta');
@@ -32,7 +33,7 @@ router.post('/', function (req, res, next) {
                 }
             }));
         } else {
-            if (dbResult.length == 1 && dbResult[0].password == password) {
+            if (dbResult.length == 1 && cons.decrypt(dbResult[0].password) == password) {
                 var user = {};
                 user.user_id = user_id;
                 user.first_name = dbResult[0].first_name;

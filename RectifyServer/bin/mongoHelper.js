@@ -12,6 +12,7 @@ mongo_helper.AddUser = function (first_name, last_name, email, password, user_id
     userObj.email = email;
     userObj.password = password;
     userObj.score = 0;
+    userObj.time = 0;
     var collection = mongo_client.get().collection(cons.UsersColl);
     mongo_client.insertToDB(collection, userObj, callback);
 };
@@ -59,10 +60,11 @@ mongo_helper.AddSubmission = function (problem_id, problem_name, user_id, code, 
     mongo_client.updateToDB(collection, query, submissionObj, callback);
 };
 
-mongo_helper.UpdateScore = function(user_id, score_change, callback) {
+mongo_helper.UpdateScore = function(user_id, score_change, time, callback) {
     var updateObj = {
         "$inc": {
-            "score": score_change
+            "score": score_change,
+            "time": time
         }
     };
     var query = {};
@@ -88,7 +90,7 @@ mongo_helper.GetSubmissionsByUserId = function (user_id, callback) {
 mongo_helper.GetLeaderboard = function (callback) {
     var collection = mongo_client.get().collection(cons.UsersColl);
     // Add time.
-    var sortObj = {score: -1};
+    var sortObj = {score: -1, time: 1};
     mongo_client.getLeaders(collection, {}, sortObj, 0, 100, callback);
 };
 
@@ -119,6 +121,13 @@ mongo_helper.GetHacksByUser = function (user_id, callback) {
     var collection = mongo_client.get().collection(cons.HacksColl);
     var obj = {};
     obj.user_id = user_id;
+    mongo_client.findInDB(collection, obj, 0, 100, callback);
+};
+
+mongo_helper.GetAllSystemTest = function (problem_id, callback) {
+    var collection = mongo_client.get().collection(cons.SystemTestsColl);
+    var obj = {};
+    obj.problem_id = problem_id;
     mongo_client.findInDB(collection, obj, 0, 100, callback);
 };
 

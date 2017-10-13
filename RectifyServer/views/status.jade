@@ -4,4 +4,7 @@ extends layout
 
 block body
     body
-        h3 #{meta_data.submission_status}
+        if meta_data.submission_status == "ACCEPTED" || meta_data.submission_status == "SUCCESSFUL"
+            h2.header.center.orange-text #{meta_data.submission_status} :)
+        else
+            h2.header.center.light-blue-text #{meta_data.submission_status} :(

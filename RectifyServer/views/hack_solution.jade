@@ -6,9 +6,9 @@ extends layout
 block body
     body
         if (typeof(meta_data) !== undefined && meta_data != null)
-            if (typeof (meta_data.opponent_code) !== undefined && meta_data.opponent_code != null)
+            if (typeof (meta_data.opponent_code) !== undefined && meta_data.opponent_code != null && meta_data.phase == "HACKING_PHASE")
                 <div class="container">
-                <div class="row">
+                <div class="row" style="white-space: pre-wrap;">
                 p.header.col.s12.light #{meta_data.opponent_code}
                 </div>
 
@@ -34,6 +34,6 @@ block body
                 <br>
                 <br>
             else
-                <h3>Problems error.</h3>
+                h5.header.col.s12.light You cannot hack any more challenges.
         else
             <h3>Meta data undefined.</h3>

@@ -27,10 +27,13 @@ block title
 </ul>
 <ul class="right hide-on-med-and-down">
 <li><a href="/">Home</a></li>
-if (typeof(meta_data.is_logged_in) !== undefined && meta_data.is_logged_in != null && meta_data.is_logged_in !== false)
+if meta_data.is_logged_in == true && (meta_data.phase == "CODING_PHASE" || meta_data.phase == "HACKING_PHASE")
     <li><a href="/dashboard">Challenges</a></li>
+if meta_data.is_logged_in == true
     <li><a href="/leaderboard">Leaderboard</a></li>
+if meta_data.is_logged_in == true && meta_data.phase == "HACKING_PHASE"
     <li><a href="/hack">Hack</a></li>
+if meta_data.is_logged_in == true
     <li><a href="/logout">Logout</a></li>
 
 </ul>
@@ -41,22 +44,6 @@ block body
 
 block footer
     footer
-<footer class="page-footer orange">
-<div class="container">
-<div class="row">
-
-<div class="col s12" align="right">
-<ul>
-<li><a class="white-text" href="/faq">FAQ</a></li>
-<li><a class="white-text" href="http://engineernitk.org/">Engineer 2017</a></li>
-<li><a class="white-text" href="https://github.com/WebClub-NITK">Web Club</a></li>
-</ul>
-</div>
-
-</div>
-</div>
-</footer>
-
 
 <!--  Scripts-->
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>

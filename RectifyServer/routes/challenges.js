@@ -22,12 +22,12 @@ router.get('/', function(req, res, next) {
                     dbResults.forEach(function (problem_info) {
                         meta_info.problems.push(problem_info);
                     });
+                    res.render('challenge', {meta_data: meta_info});
                 } else {
                     res.status(500).json("Error. Got more than 1 problem for same problem id.");
                 }
             }
         });
-        res.render('challenge', {meta_data: meta_info});
     } else {
         res.redirect(url.format({
             pathname:"/login",
@@ -91,9 +91,11 @@ router.post('/', function (req, res, next) {
                                     function (callback) {
                                         var score = 0;
                                         if (req.query.solved == "no") {
-                                            score = cons.Score;
+                                            score = cons.SampleTestScore;
                                         }
-                                        mongo_helper.UpdateScore(submissionObj.userId, score, function (err, dbResults) {
+                                        var time = timestamp - meta_info.contest_start_time;
+                                        time = time / 1000;
+                                        mongo_helper.UpdateScore(submissionObj.userId, score, time, function (err, dbResults) {
                                             if (err) {
                                                 callback(err);
                                             }
@@ -113,6 +115,14 @@ router.post('/', function (req, res, next) {
                                         }));
                                     }
                                 });
+                            } else {
+                                res.redirect(url.format({
+                                    pathname:"/status",
+                                    query: {
+                                        "submission_status": body.submissionStatus,
+                                        "error_status": body.errorStatus
+                                    }
+                                }));
                             }
                         } else {
                             // Some error in service.

@@ -5,7 +5,7 @@ extends layout
 block body
     body
         if (typeof(meta_data) !== undefined && meta_data != null)
-            if (typeof (meta_data.hacks) !== undefined && meta_data.hacks != null)
+            if (typeof (meta_data.hacks) !== undefined && meta_data.hacks != null && meta_data.phase == "HACKING_PHASE")
                 <table class="striped" style="width: 70%; align: center" align="center">
                 <thead>
                 <tr>

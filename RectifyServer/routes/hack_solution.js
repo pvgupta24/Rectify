@@ -17,6 +17,10 @@ router.get('/', function (req, res, next) {
                 res.status(500).json("Error getting opponents solution. Error : " + err);
             } else {
                 if (result.length > 0) {
+                    // var code = "<p>";
+                    // code += result[0].code;
+                    // code = code.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                    // code += "</p>";
                     meta_info.opponent_code = result[0].code;
                     res.render('hack_solution', {meta_data: meta_info});
                 } else {
@@ -81,22 +85,28 @@ router.post('/', function (req, res, next) {
                             if (response.statusCode == 200) {
                                 // Successful. If successful update the score and store the submission for hacking.
                                 var score;
+                                var addHack = false;
                                 if (body.hackStatus == "SUCCESSFUL") {
                                     score = 50;
+                                    addHack = true;
                                 } else {
                                     score = -25;
                                 }
                                 async.parallel([
                                     function (callable) {
-                                        mongo_helper.AddHacks(userObj.user_id, problemId, opponentId, function (err, result) {
-                                            if (err) {
-                                                callable(err);
-                                            } else {
-                                                callable(null, result);
-                                            }
-                                        })
+                                        if (addHack) {
+                                            mongo_helper.AddHacks(userObj.user_id, problemId, opponentId, function (err, result) {
+                                                if (err) {
+                                                    callable(err);
+                                                } else {
+                                                    callable(null, result);
+                                                }
+                                            });
+                                        } else {
+                                            callable(null);
+                                        }
                                     } , function (callable) {
-                                        mongo_helper.UpdateScore(userObj.user_id, score, function (err, result) {
+                                        mongo_helper.UpdateScore(userObj.user_id, score, 0, function (err, result) {
                                             if (err) {
                                                 callable(err);
                                             } else {

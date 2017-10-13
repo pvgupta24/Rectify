@@ -1,8 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var meta = require('../bin/meta');
+var cons = require('../bin/constants');
 
 var mongo_helper = require('../bin/mongoHelper');
+var url = require("url");
 /* GET home page. */
 router.get('/', function(req, res, next) {
     var meta_info = meta.getMeta();
@@ -20,7 +22,7 @@ router.post('/', function (req, res, next) {
     var first_name = req.body.first_name;
     var last_name = req.body.last_name;
     var email = req.body.email;
-    var password = req.body.password;
+    var password = cons.encrypt(req.body.password);
     var user_id = req.body.user_id;
     var meta_info = meta.getMeta();
     mongo_helper.FindUser(user_id, function (err, dbResults) {

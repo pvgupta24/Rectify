@@ -6,7 +6,7 @@ block title
 block body
     body
         if (typeof(meta_data) !== undefined && meta_data != null)
-            if (typeof (meta_data.problems) !== undefined && meta_data.problems != null)
+            if (typeof (meta_data.problems) !== undefined && meta_data.problems != null && (meta_data.phase == "CODING_PHASE" || meta_data.phase == "HACKING_PHASE"))
                 <table class="striped" style="width: 70%; align: center" align="center">
                 <thead>
                 <tr>
@@ -39,6 +39,6 @@ block body
                 </tbody>
                 </table>
             else
-                <h2> Error. Problems is undefined. </h2>
+                h5.header.col.s12.light You cannot submit any more challenges.
         else
             <h2> Error. Meta data is undefined. </h2>

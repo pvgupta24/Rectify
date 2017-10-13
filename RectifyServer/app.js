@@ -18,6 +18,8 @@ var status = require('./routes/status');
 var leaderboard = require('./routes/leaderboard');
 var hack = require('./routes/hack');
 var hack_solution = require('./routes/hack_solution');
+var meta = require('./bin/meta');
+var system_testing = require('./routes/system_testing');
 
 var app = express();
 
@@ -49,16 +51,18 @@ app.use('/status', status);
 app.use('/leaderboard', leaderboard);
 app.use('/hack', hack);
 app.use('/hack_solution', hack_solution);
+app.use('/system_testing', system_testing);
 
 
 // connect to the mongo.
 var dbUrl = null;
+meta.initialiseMeta();
 /*if (process.env.test) {
     dbUrl = cons.getDBUrl(cons.dbTest);
 } else {
     dbUrl = cons.getDBUrl(cons.dbProd);
 }*/
-dbUrl = cons.getDBUrl(cons.dbTest);
+dbUrl = cons.getDBUrl(cons.dbProd);
 
 mongo_client.connect(dbUrl, function (err) {
     if (err) {
