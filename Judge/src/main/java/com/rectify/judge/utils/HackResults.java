@@ -17,6 +17,12 @@ public class HackResults {
         this.codeOutput = "";
     }
 
+    public HackResults(HackStatus hackStatus, SubmissionResults submissionResults){
+        this.hackStatus = hackStatus;
+        this.errorStatus = submissionResults.getErrorStatus();
+        this.codeOutput = submissionResults.getCodeOutput();
+    }
+
     public String getCodeOutput() {
         return codeOutput;
     }
