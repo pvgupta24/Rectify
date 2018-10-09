@@ -62,7 +62,7 @@ meta.initialiseMeta();
 } else {
     dbUrl = cons.getDBUrl(cons.dbProd);
 }*/
-dbUrl = cons.getDBUrl(cons.dbProd);
+dbUrl = cons.getDBUrl(cons.dbTest);
 
 mongo_client.connect(dbUrl, function (err) {
     if (err) {

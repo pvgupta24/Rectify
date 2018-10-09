@@ -19,16 +19,13 @@ meta.initialiseMeta = function () {
 meta.loadMeta = function () {
     var curr_time = new Date().getTime();
     // load meta data.
-    if (meta_info.contest_start_time + cons.CHILL_PHASE_DUR*cons.MULTIPLIER > curr_time) {
+    if (meta_info.contest_start_time + cons.CHILL_PHASE_DUR * cons.MULTIPLIER > curr_time) {
         meta_info.phase = cons.CHILL_PHASE;
-    } else if (meta_info.contest_start_time + cons.CHILL_PHASE_DUR*cons.MULTIPLIER < curr_time && 
-    meta_info.contest_start_time + cons.CODING_PHASE_DUR*cons.MULTIPLIER > curr_time) {
+    } else if (meta_info.contest_start_time + cons.CODING_PHASE_DUR * cons.MULTIPLIER > curr_time) {
         meta_info.phase = cons.CODING_PHASE;
-    } else if (meta_info.contest_start_time + cons.CODING_PHASE_DUR*cons.MULTIPLIER < curr_time &&
-    meta_info.contest_start_time + cons.HACKING_PHASE_DUR*cons.MULTIPLIER > curr_time) {
+    } else if (meta_info.contest_start_time + cons.HACKING_PHASE_DUR * cons.MULTIPLIER > curr_time) {
         meta_info.phase = cons.HACKING_PHASE;
-    } else if (meta_info.contest_start_time + cons.HACKING_PHASE_DUR*cons.MULTIPLIER < curr_time &&
-    meta_info.contest_start_time + cons.SYSTEM_TESTING_PHASE*cons.MULTIPLIER > curr_time) {
+    } else if (meta_info.contest_start_time + cons.SYSTEM_TESTING_PHASE * cons.MULTIPLIER > curr_time) {
         meta_info.phase = cons.SYSTEM_TESTING_PHASE;
     }
 };
