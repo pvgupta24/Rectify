@@ -15,7 +15,7 @@ cons.HacksColl = "Hacks";
 cons.SystemTestsColl = "SystemTests";
 
 // Authentication.
-cons.auth = "mohitreddy1996:mohitreddy1996";
+cons.auth = "mynewuser:myuser123";
 
 // Phases.
 cons.CHILL_PHASE = "CHILL_PHASE";
@@ -25,7 +25,7 @@ cons.SYSTEM_TESTING_PHASE = "SYSTEM_TESTING_PHASE";
 
 // Duration for phases.
 cons.CHILL_PHASE_DUR = 0;
-cons.CODING_PHASE_DUR = 0;
+cons.CODING_PHASE_DUR = 30;
 cons.HACKING_PHASE_DUR = 50;
 cons.SYSTEM_TESTING_PHASE = 175;
 
