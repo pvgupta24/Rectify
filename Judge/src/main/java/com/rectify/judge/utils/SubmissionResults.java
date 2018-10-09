@@ -3,6 +3,15 @@ package com.rectify.judge.utils;
 public class SubmissionResults {
     private SubmissionStatus submissionStatus;
     private String errorStatus;
+    private String codeOutput;
+    
+    public String getCodeOutput() {
+        return codeOutput;
+    }
+
+    public void setSubmissionStatus(String codeOutput) {
+        this.codeOutput = codeOutput;
+    }
 
     public SubmissionStatus getSubmissionStatus() {
         return submissionStatus;
