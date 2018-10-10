@@ -12,7 +12,7 @@ if len(sys.argv) != 3:
 
 def read_and_get(filename):
     file = open(filename, "r")
-    return file.read().replace('"', '\\"')
+    return file.read().replace('"', '\\"').replace('\'', '\'\\\'\'')
 
 def execute(command):
     proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
