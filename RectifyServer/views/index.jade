@@ -1,24 +1,24 @@
 extends layout
 block title
-    title Rectify | Engineer 2017 | Home
+    title Rectify | Engineer 2018 | Home
 
 block body
     body
     <div class="section no-pad-bot" id="index-banner">
     <div class="container">
-    <h1 class="header center orange-text"> Rectify | Engineer 2017 </h1>
+    <h2 class="header center light-blue-text text-darken-4"> Rectify | Engineer 2018 </h2>
     <div class="row center">
-    <h5 class="header col s12 light">CODE | HACK | WIN</h5>
+    <h5 class="header col s12 light">Code | Hack | Win</h5>
     </div>
     <div class="row center">
     if meta_data.is_logged_in == true && (meta_data.phase == "CODING_PHASE" || meta_data.phase == "HACKING_PHASE" || meta_data.phase == "SYSTEM_TESTING_PHASE")
-        <a href="/dashboard" id="download-button" class="btn-large waves-effect waves-light orange">Contest</a>
+        <a href="/dashboard" class="btn-large waves-effect waves-light blue ml10">Contest</a>
     if meta_data.is_logged_in == true
-        <a href="/logout" id="download-button" class="btn-large waves-effect waves-light orange">Logout</a>
+        <a href="/logout" class="btn-large waves-effect waves-light blue ml10">Logout</a>
     if meta_data.is_logged_in == false && (meta_data.phase == "CODING_PHASE" || meta_data.phase == "HACKING_PHASE" || meta_data.phase == "SYSTEM_TESTING_PHASE")
-        <a href="/login" id="download-button" class="btn-large waves-effect waves-light orange">Login</a>
+        <a href="/login" class="btn-large waves-effect waves-light blue ml10">Login</a>
     if meta_data.is_logged_in == false
-        <a href="/register" id="download-button" class="btn-large waves-effect waves-light orange">Register</a>
+        <a href="/register" class="btn-large waves-effect waves-light blue ml10">Register</a>
     </div>
     <br><br>
 
@@ -34,16 +34,20 @@ block body
 
     <div class="col s6">
     <div class="icon-block">
-    <h2 class="center light-blue-text"><i class="material-icons">mode_edit</i></h2>
+    <h2 class="center light-blue-text text-darken-4">
+    <i class="material-icons">mode_edit</i>
+    </h2>
     <h5 class="center">Round 1</h5>
 
-    <p class="light">Congratulations for making it through round 1.</p>
+    <p class="light center">Congratulations for making it through Round 1.</p>
     </div>
     </div>
 
     <div class="col s6">
     <div class="icon-block">
-    <h2 class="center light-blue-text"><i class="material-icons">code</i></h2>
+    <h2 class="center light-blue-text text-darken-4">
+    <i class="material-icons">code</i>
+    </h2>
     <h5 class="center">Round 2</h5>
 
     <p class="light">Competitive programming round. Solve 4 questions in 120 Minutes. Then you get 30 minutes to hack other successful submissions. Wait for full system tests to run!!</p>
