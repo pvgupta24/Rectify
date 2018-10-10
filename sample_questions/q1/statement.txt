@@ -1,0 +1,2 @@
+Divide two numbers
+Output the result
