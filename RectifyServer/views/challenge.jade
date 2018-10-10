@@ -10,17 +10,17 @@ block body
                 h2.header.center.orange-text #{meta_data.problems[0].problem_name}
                 <div class="row" style="white-space: pre-wrap;">
                 <h5 class="header col s12 light"> Problem Statement: </h5>
-                p.header.col.s12.light #{meta_data.problems[0].problem_statement}
+                p.header.col.s12.light !{meta_data.problems[0].problem_statement}
 
                 <h5 class="header col s12 light"> Problem Constraints </h5>
-                p.header.col.s12.light #{meta_data.problems[0].problem_constraints}
+                p.header.col.s12.light !{meta_data.problems[0].problem_constraints}
 
                 <h5 class="col s12 light"> Time Constraints </h5>
-                p.col.s12.light #{meta_data.problems[0].time_constraint}
+                p.col.s12.light !{meta_data.problems[0].time_constraint} sec
 
 
                 <h5 class="col s12 light"> Memory Constraints </h5>
-                p.col.s12.light #{meta_data.problems[0].memory_constraint}
+                p.col.s12.light !{meta_data.problems[0].memory_constraint} MB
                 </div>
 
                 style(type='text/css').
