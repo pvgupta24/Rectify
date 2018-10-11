@@ -5,5 +5,6 @@ package com.rectify.judge.utils;
  */
 public enum HackStatus {
     SUCCESSFUL,
-    UNSUCCESSFUL
+    UNSUCCESSFUL,
+    SYSTEM_ERROR
 }

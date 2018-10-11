@@ -39,7 +39,8 @@ public class Runner {
      * @return {@link SubmissionResults} denoting the compilation status
      */
     public static SubmissionResults compileCode(String fileName,
-                                                String fileNameExt){
+                                                String fileNameExt,
+                                                String parentDir){
         // TODO: Class is not synchronized.
         ExecutorService executorService = Executors.newSingleThreadExecutor();
         final SubmissionResults submissionResults = new SubmissionResults();
@@ -51,9 +52,9 @@ public class Runner {
                         = new ProcessBuilder(
                             "g++",
                             "-w",
-                            parentDirSubmissions + fileNameExt,
+                            parentDir + fileNameExt,    
                             "-o",
-                            parentDirSubmissions + fileName
+                            parentDir + fileName
                         );
                     Process process = processBuilder.start();
                     BufferedReader errorReader = new BufferedReader(
@@ -106,7 +107,7 @@ public class Runner {
      * @return
      */
     public static SubmissionResults getCodeOutput(Testcase testcase,
-                                    String fileName, int timeLimit){
+                            String fileName, String parentDir, int timeLimit){
         final SubmissionResults testSubmissionResult = new SubmissionResults();
         final ExecutorService executorService
             = Executors.newSingleThreadExecutor();
@@ -116,7 +117,7 @@ public class Runner {
                     ProcessBuilder processBuilder
                         = new ProcessBuilder("./" + fileName);
                     processBuilder.directory(
-                        new File(parentDirSubmissions));
+                        new File(parentDir));
                     Process process = processBuilder.start();
                     BufferedReader inputReader = new BufferedReader(
                         new InputStreamReader(process.getInputStream()));
@@ -141,15 +142,14 @@ public class Runner {
                         testSubmissionResult.setSubmissionStatus(
                         SubmissionStatus.SIGSEV);
                         testSubmissionResult.setErrorStatus(errorOutput);
+                        LOGGER.severe(errorOutput);
 
                         return;
                     }
                     String correctOutput = testcase.output_data;
                     correctOutput = correctOutput.replaceAll("\\s+", "");
                     codeOutput = codeOutput.replaceAll("\\s+", "");
-                    LOGGER.info(codeOutput);
-                    LOGGER.info(testcase.input_data);
-                    LOGGER.info(correctOutput);
+                    testSubmissionResult.setCodeOutput(codeOutput);
                     if (!correctOutput.equals(codeOutput)) {
                         testSubmissionResult.setSubmissionStatus(
                             SubmissionStatus.WRONG_ANSWER);
@@ -162,6 +162,7 @@ public class Runner {
                 } catch (Exception e) {
                     LOGGER.severe(
                         "Exception while testing submission : " + e);
+                        e.printStackTrace();
                 }
             };
 

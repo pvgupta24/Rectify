@@ -8,13 +8,19 @@ public class HackResults {
     private HackStatus hackStatus;
     private String codeOutput;
 
-    public HackResults() {
+    // JAXB needs no-param constructor
+    public HackResults() {}
 
-    }
     public HackResults(HackStatus hackStatus) {
         this.hackStatus = hackStatus;
         this.errorStatus = "";
         this.codeOutput = "";
+    }
+
+    public HackResults(HackStatus hackStatus, SubmissionResults submissionResults){
+        this.hackStatus = hackStatus;
+        this.errorStatus = submissionResults.getErrorStatus();
+        this.codeOutput = submissionResults.getCodeOutput();
     }
 
     public String getCodeOutput() {

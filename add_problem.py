@@ -15,14 +15,15 @@ def read_and_get(filename):
     return file.read().replace('"', '\\"').replace('\'', '\'\\\'\'')
 
 def execute(command):
-    proc = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
-    out, err = proc.communicate()
-    if proc.returncode != 0 or err is not None:
-        print(out)
-        print(err)
-        print("Exiting due to error : {0}".format(proc.returncode))
-        sys.exit(proc.returncode)
-    return out
+    print(command)
+    # proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)#, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+    # out, err = proc.communicate()
+    # if proc.returncode != 0 or err is not None:
+    #     print(out)
+    #     print(err)
+    #     print("Exiting due to error : {0}".format(proc.returncode))
+    #     sys.exit(proc.returncode)
+    # return out
 
 def db_insert(document, entry):
     command = "echo 'db.{1}.insert({2});' | mongo {0}".format(
@@ -49,7 +50,7 @@ def check_for_duplicate(problem_id):
     command = "echo 'db.Problems.find({1});' | mongo {0}".format(
         DB, query)
     out = execute(command)
-    if "problem_id" in out:
+    if "problem_id" in str(out):
         choice = raw_input("Problem with id {0} already exists. Do you want to overwrite? [y/N] : ".format(problem_id))
         if choice == "y" or choice == "Y":
             remove_duplicate(problem_id)
@@ -86,14 +87,17 @@ problem_entry = """
     name.replace('\n', ''),
     statement.replace('\n', '<br/>'),
     constraints.replace('\n', '<br/>'),
-    time_limit.replace('\n', '<br/>'),
-    memory_limit.replace('\n', '<br/>'),
-    code.replace('\n', ' '),
+    time_limit.replace('\n', ''),
+    memory_limit.replace('\n', ''),
+    code,#.replace('\n', ' '),
     "{",
     "}"
 ).replace('\n', '')
 
-print("Adding problem to db")
+# print("Deleting Database")
+print("echo 'db.dropDatabase()' | mongo {0}".format(DB))
+
+# print("Adding problem to db")
 
 db_insert("Problems", problem_entry)
 
@@ -117,7 +121,7 @@ for i in range(1, nsimple + 1):
         "{",
         "}"
     )
-    print("Adding simple test #{0} to db".format(i))
+    # print("Adding simple test #{0} to db".format(i))
     db_insert("Testcases", simple_test_entry)
 
 for i in range(1, nsystem + 1):
@@ -140,7 +144,9 @@ for i in range(1, nsystem + 1):
         "{",
         "}"
     )
-    print("Adding system test #{0} to db".format(i))
+    # print("Adding system test #{0} to db".format(i))
     db_insert("SystemTests", simple_test_entry)
 
-print("[DONE]")
+os.system("cp {0} Solutions/{1}.cc".format(
+    os.path.join(question_folder, "code.cpp"), problem_id))
+# print("[DONE]") 

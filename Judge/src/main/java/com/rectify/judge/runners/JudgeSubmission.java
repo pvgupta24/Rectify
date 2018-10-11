@@ -60,19 +60,20 @@ public class JudgeSubmission implements Callable {
         // TODO: Class is not synchronized.
         // ExecutorService executorService = Executors.newSingleThreadExecutor();
 
-        submissionResults = Runner.compileCode(fileName, fileNameExt);
+        submissionResults
+            = Runner.compileCode(fileName, fileNameExt, parentDirSubmissions);
         if(submissionResults.getSubmissionStatus() != null)
         {
             return submissionResults;
         }
-        LOGGER.info(submissionDetails.testcases.toString());
+        // LOGGER.info(submissionDetails.testcases.toString());
         // Run the binary with the test files.
         for (final Testcase testcase : submissionDetails.testcases) {
-            LOGGER.info(testcase.input_data);
-            LOGGER.info(testcase.output_data);
+            // LOGGER.info(testcase.input_data);
+            // LOGGER.info(testcase.output_data);
 
             final SubmissionResults testSubmissionResult
-                = Runner.getCodeOutput(testcase, fileName,
+                = Runner.getCodeOutput(testcase, fileName, parentDirSubmissions,
                     submissionDetails.timeLimit);
             
             // Set submission status if test fails for the test case

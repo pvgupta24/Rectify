@@ -75,6 +75,9 @@ router.post('/', function (req, res, next) {
                 hackObj.correct_code = correct_code;
                 hackObj.hack_input = hack_input;
                 hackObj.submitted_code = submitted_code;
+                hackObj.opponent_id = opponentId;
+                hackObj.problem_id = problemId;
+                hackObj.user_id = userObj.user_id;
                 request.post('http://0.0.0.0:9002/hack/submit',
                     {json: hackObj},
                     function (error, response, body) {
@@ -84,12 +87,12 @@ router.post('/', function (req, res, next) {
                         } else {
                             if (response.statusCode == 200) {
                                 // Successful. If successful update the score and store the submission for hacking.
-                                var score;
+                                var score = 0;
                                 var addHack = false;
                                 if (body.hackStatus == "SUCCESSFUL") {
                                     score = 50;
                                     addHack = true;
-                                } else {
+                                } else if (body.hackStatus == "UNSUCCESSFUL") {
                                     score = -25;
                                 }
                                 async.parallel([

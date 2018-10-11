@@ -3,6 +3,22 @@ package com.rectify.judge.utils;
 public class SubmissionResults {
     private SubmissionStatus submissionStatus;
     private String errorStatus;
+    private String codeOutput;
+    
+    public String getCodeOutput() {
+        return codeOutput;
+    }
+
+    public void setCodeOutput(String codeOutput) {
+        this.codeOutput = codeOutput;
+    }
+
+    public void setSubmissionStatus(String codeOutput) {
+        this.codeOutput = codeOutput;
+    }
+
+    // JAXB needs no-param constructor
+    public SubmissionResults(){}
 
     public SubmissionStatus getSubmissionStatus() {
         return submissionStatus;

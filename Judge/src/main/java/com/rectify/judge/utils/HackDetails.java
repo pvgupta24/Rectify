@@ -7,4 +7,7 @@ public class HackDetails {
     public String correct_code;
     public String submitted_code;
     public String hack_input;
+    public String opponent_id;
+    public String problem_id;
+    public String user_id;
 }

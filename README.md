@@ -4,9 +4,9 @@ Rectify is a coding and debugging event in Engineer NITK.
 
 ## Dependencies
 
-+ java
++ java8
 + maven
-+ nodejs
++ node.js
 + mongodb
 
 ## Build & Run
@@ -27,7 +27,7 @@ sudo systemctl start mongodb.service
 
 ### Rectify Server
 
-Install dependencies
+Install dependencies in RectifyServer
 
 ```
 npm install
@@ -45,7 +45,7 @@ The site should be running on [localhost:3000](http://localhost:3000)
 
 Install `java` and `maven`
 
-Install dependencies
+Install dependencies in Judge
 
 ```
 mvn package
@@ -86,5 +86,5 @@ python add_problem.py <folder-name> <problem-id>
 For example, to add `sample_questions/q1`
 
 ```
-python add_problem.py sample_questions/q1 1
+python add_problem.py sample_questions/q1 1 > out.sh && ./out.sh && rm out.sh
 ```
