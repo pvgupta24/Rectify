@@ -95,7 +95,7 @@ problem_entry = """
 ).replace('\n', '')
 
 # print("Deleting Database")
-print("echo 'db.dropDatabase()' | mongo {0}".format(DB))
+# print("echo 'db.dropDatabase()' | mongo {0}".format(DB))
 
 # print("Adding problem to db")
 

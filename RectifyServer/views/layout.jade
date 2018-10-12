@@ -22,7 +22,8 @@ block title
 <nav class="grey darken-3 lighten-1" role="navigation">
 <div class="nav-wrapper container">
 <ul class="left hide-on-med-and-down">
-<li><a href="http://engineernitk.org/">Engineer 2018</a></li>
+//- if meta_data.is_logged_in == true
+<li>#{meta_data.phase.replace("_", " ")}</li>
 </ul>
 <ul class="right hide-on-med-and-down">
 <li><a href="/">Home</a></li>
@@ -38,11 +39,13 @@ if meta_data.is_logged_in == true
 </ul>
 </div>
 </nav>
+
 block body
     body
 
 block footer
     footer
+
 
 <!--  Scripts-->
 <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
