@@ -23,11 +23,15 @@ cons.CODING_PHASE = "CODING_PHASE";
 cons.HACKING_PHASE = "HACKING_PHASE";
 cons.SYSTEM_TESTING_PHASE = "SYSTEM_TESTING_PHASE";
 
-// Duration for phases.
+// Database to use
+cons.dbUrl = cons.dbTest;
+// Set a specific time for the contest
+cons.StartTime = new Date().getTime();
+// Ending time for phases
 cons.CHILL_PHASE_DUR = 0;
 cons.CODING_PHASE_DUR = 1;
-cons.HACKING_PHASE_DUR = 2;
-cons.SYSTEM_TESTING_PHASE = 3;
+cons.HACKING_PHASE_DUR = 1;
+cons.SYSTEM_TESTING_PHASE_DUR = 5;
 
 // Multiplier.
 cons.MULTIPLIER = 60*1000;
@@ -35,15 +39,8 @@ cons.MULTIPLIER = 60*1000;
 // KEY
 cons.KEY = "RECTIFY";
 
-cons.getDBUrl = function (dbName) {
-    if (dbName == cons.dbProd) {
-        return "mongodb://" + cons.auth + "@" + cons.host + ":" + cons.port + "/" + dbName;
-    }  else if (dbName == cons.dbTest) {
-        return "mongodb://" + cons.auth + "@" + cons.host + ":" + cons.port + "/" + dbName
-    } else {
-        console.log("Wrong database.");
-        process.exit(1);
-    }
+cons.getDBUrl = function () {
+    return "mongodb://" + cons.auth + "@" + cons.host + ":" + cons.port + "/" + cons.dbUrl;
 };
 
 
@@ -62,5 +59,7 @@ cons.decrypt = function (message) {
 
 cons.SampleTestScore = 25;
 cons.SystemTestScore = 100;
+cons.SuccessfullHackScore = 50;
+cons.UnsuccessfullHackScore = -25;
 
 module.exports = cons;

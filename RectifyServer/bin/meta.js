@@ -12,7 +12,7 @@ meta.getMeta = function () {
 };
 
 meta.initialiseMeta = function () {
-    meta_info.contest_start_time = new Date().getTime();
+    meta_info.contest_start_time = cons.StartTime;
     meta_info.phase = cons.CHILL_PHASE;
 };
 
@@ -25,7 +25,7 @@ meta.loadMeta = function () {
         meta_info.phase = cons.CODING_PHASE;
     } else if (meta_info.contest_start_time + cons.HACKING_PHASE_DUR * cons.MULTIPLIER > curr_time) {
         meta_info.phase = cons.HACKING_PHASE;
-    } else if (meta_info.contest_start_time + cons.SYSTEM_TESTING_PHASE * cons.MULTIPLIER > curr_time) {
+    } else if (meta_info.contest_start_time + cons.SYSTEM_TESTING_PHASE_DUR * cons.MULTIPLIER > curr_time) {
         meta_info.phase = cons.SYSTEM_TESTING_PHASE;
     }
 };

@@ -5,7 +5,6 @@ var mongo_helper = require('../bin/mongoHelper');
 var meta = require('../bin/meta');
 var cons = require("../bin/constants.js");
 
-/* GET home page. */
 router.get('/', function(req, res, next) {
     var meta_info = meta.getMeta();
     if (meta_info.phase == cons.SYSTEM_TESTING_PHASE) {

@@ -54,15 +54,10 @@ app.use('/hack_solution', hack_solution);
 app.use('/system_testing', system_testing);
 
 
-// connect to the mongo.
+// connect to mongo.
 var dbUrl = null;
 meta.initialiseMeta();
-/*if (process.env.test) {
-    dbUrl = cons.getDBUrl(cons.dbTest);
-} else {
-    dbUrl = cons.getDBUrl(cons.dbProd);
-}*/
-dbUrl = cons.getDBUrl(cons.dbTest);
+dbUrl = cons.getDBUrl();
 
 mongo_client.connect(dbUrl, function (err) {
     if (err) {

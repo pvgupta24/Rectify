@@ -5,6 +5,7 @@ var meta = require('../bin/meta');
 var url = require("url");
 var request = require('request');
 var async = require('async');
+var cons = require('../bin/constants');
 
 router.get('/', function (req, res, next) {
     var meta_info = meta.getMeta();
@@ -90,10 +91,10 @@ router.post('/', function (req, res, next) {
                                 var score = 0;
                                 var addHack = false;
                                 if (body.hackStatus == "SUCCESSFUL") {
-                                    score = 50;
+                                    score = cons.SuccessfullHackScore;
                                     addHack = true;
                                 } else if (body.hackStatus == "UNSUCCESSFUL") {
-                                    score = -25;
+                                    score = cons.UnsuccessfullHackScore;
                                 }
                                 async.parallel([
                                     function (callable) {
