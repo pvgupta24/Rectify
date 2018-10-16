@@ -64,3 +64,5 @@ Hacks/
 Submissions/
 Solutions/
 db.js
+*.db_insert
+Solutions/

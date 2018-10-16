@@ -80,11 +80,11 @@ See `sample_questions/q1` for example
 Then add question to db
 
 ```
-python add_problem.py <folder-name> <problem-id>
+./add_problem.sh <folder-name> <problem-id> <db-name>
 ```
 
-For example, to add `sample_questions/q1`
+For example, to add `sample_questions/q1` to `Rectify`
 
 ```
-python add_problem.py sample_questions/q1 1 > out.sh && ./out.sh && rm out.sh
+python add_problem.py sample_questions/q1 1 Rectify
 ```
